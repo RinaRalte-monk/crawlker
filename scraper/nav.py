@@ -7,27 +7,26 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-def scanPage(url, driver, tillPage):
+def scan_page(url, driver):
     driver.get(url)
 
-    currentPage = 1
-    tillPage = tillPage
-    lastPage = int(driver.find_element(By.CLASS_NAME, 'pagination-paginationMeta').text.split(' ')[-1])
+    #current_page = 1
+    #till_page = till_page
+    #last_page = int(driver.find_element(By.CLASS_NAME, 'pagination-paginationMeta').text.split(' ')[-1])
 
-    if tillPage is None :
-        tillPage = lastPage
+    #if till_page is None :
+    #    till_page = last_page
 
-    imageUrls = []
-    for i in range(currentPage, tillPage):
-        href_selectors = driver.find_elements(By.CSS_SELECTOR, "a")
-        shirtUrl = re.compile(r'^https://www.myntra.com/tshirts/')
-        href_urls = [href.get_attribute('href') for href in href_selectors if href.get_attribute('href') is not None and shirtUrl.match(href.get_attribute('href'))]
-        imageUrls.extend(href_urls)
+    image_urls = []
+    #for i in range(current_page, till_page):
+    href_selectors = driver.find_elements(By.CSS_SELECTOR, "a")
+    href_urls = [href.get_attribute('href') for href in href_selectors if href.get_attribute('href') is not None and href.get_attribute('href').endswith('/buy')]
+    image_urls.extend(href_urls)
 
-        clickNext = driver.find_element(By.CLASS_NAME, "pagination-next")
-        ActionChains(driver)\
-            .click(clickNext)\
-            .perform()
-        time.sleep(5)
-
-    return imageUrls
+        #click_next = driver.find_element(By.CLASS_NAME, "pagination-next")
+        #ActionChains(driver)\
+        #    .click(click_next)\
+        #    .perform()
+        #time.sleep(5)
+    image_urls = image_urls[:10]
+    return image_urls
