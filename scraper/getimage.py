@@ -23,7 +23,6 @@ def get_image(url, driver, save_to):
     if not os.path.exists(save_path):
         os.makedirs(save_path)
 
-    count = 0
     for i,link in enumerate(tqdm(img_urls)):
         save_img = os.path.join(save_path, f'{save_to}_{i}_{uuid.uuid4()}.jpeg')
         try :
