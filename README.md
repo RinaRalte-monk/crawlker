@@ -30,6 +30,7 @@ def scrape(url, save_to):
 
 
 <br>
+
 - creates a driver variable for the selenium webdriver
 use the driver to load the desired (url)
 
@@ -40,6 +41,7 @@ driver.get(url)
 
 
 <br>
+
 - href selectors selects elements by css selector every<a>
 then stores every <a> that has a 'href' attributes inside the href_urls
 
@@ -51,6 +53,7 @@ href_urls = [href.get_attribute('href') for href in href_selectors if href.get_a
 
 
 <br>
+
 - counts upto 50 to download only 50 images
 for each elements inside the href_urls scrapes
 the images using the get_image() function
@@ -68,19 +71,19 @@ close driver
 
     driver.quit()
 ```
+
 <br>
 
 ### 1.2 scraper Module - get_image.py
 
 - the bread and butter of the code
 <br> a method that will take three arguments :
-url : url of targeted page
-driver : selenium driver
-save_to : save image to desired foler
-and scrape desired url
+<br><space>url : url of targeted page
+<br><space>driver : selenium driver
+<br><space>save_to : save image to desired folder
 
 ```
-def get_image(url, driver, save_to):
+def get_image(url, driver, save_to)
     driver.get(url)
 
     img_objs = driver.find_elements(By.CLASS_NAME, 'image-grid-image')
@@ -96,6 +99,47 @@ def get_image(url, driver, save_to):
     if not os.path.exists(save_path):
         os.makedirs(save_path)
 
+    for i,link in enumerate(tqdm(img_urls)):
+        img_name = i.split['/'][-3]
+        save_img = os.path.join(save_path, f'{img_name}.jpeg')
+        urllib.request.urlretrieve(link, save_img)
+        time.sleep(np.random.choice(sleeps))
+```
+
+<br>
+
+- use driver to find imgaes through class ->
+<br><space>filter it by attribute of 'style'
+<br><space>clean the 'style' list to get proper urls
+
+```
+    img_objs = driver.find_elements(By.CLASS_NAME, 'image-grid-image')
+    img_style = [image.get_attribute('style') for image in img_objs]
+    img_urls = [link.split('url("')[1][:-3] for link in img_style]
+```
+
+- prepares the path for the downloaded images
+<br><space>if save_to is not have a default folder
+<br><space>if not None set the path under 'Images' folder
+
+```
+    save_to = save_to
+    if save_to is None:
+        save_to = 'gotImage'
+
+    save_path = os.path.join('Images', save_to)
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+```
+
+<br>
+
+- looping through the img_urls
+<br><space>use the part of the url name as folder name
+<br><space>using urllib to retrieve the img
+<br><space>give it random sleep to make it seem human not get blocked
+
+```
     for i,link in enumerate(tqdm(img_urls)):
         img_name = i.split['/'][-3]
         save_img = os.path.join(save_path, f'{img_name}.jpeg')
