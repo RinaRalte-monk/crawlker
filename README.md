@@ -4,10 +4,10 @@ A python script that scrape images
 
 ### 1.1 scraper Module  - __init__.py
 
-init.py to intialize the folder as a module
+-init.py to intialize the folder as a module
 scrape functions that takes two arguments:
-    url: targeted url you want to scrape
-    save_to : which folder you want to save the scraped images
+<br>url: targeted url you want to scrape
+<br>save_to : which folder you want to save the scraped images
 
 ```
 def scrape(url, save_to):
@@ -27,19 +27,19 @@ def scrape(url, save_to):
 
     driver.quit()
 ```
-creates a driver variable for the selenium webdriver
+-creates a driver variable for the selenium webdriver
 use the driver to load the desired (url)
 ```
 driver = webdriver.Chrome()
 driver.get(url)
 ```
-href selectors selects elements by css selector every<a>
+-href selectors selects elements by css selector every<a>
 then stores every <a> that has a 'href' attributes inside the href_urls
 ```
 href_selectors = driver.find_elements(By.CSS_SELECTOR, "a")
 href_urls = [href.get_attribute('href') for href in href_selectors if href.get_attribute('href') is not None and href.get_attribute('href').endswith('/buy')]
 ```
-counts upto 50 to download only 50 images
+-counts upto 50 to download only 50 images
 for each elements inside the href_urls scrapes
 the images using the get_image() function
 close driver
