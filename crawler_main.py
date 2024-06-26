@@ -59,8 +59,9 @@ for i in range(0, len(male_urls)):
     scrape(male_urls[i], file_path)
     print("Saved at :", file_path)
 
-#for i in range(0, len(male_urls)):
-#    file_name = female_urls[i].split('/')[-1]
-#    file_no = str(i)
-#    file_path = os.path.join('women', file_name, file_no)
-#    scrape(male_urls[i], file_path)
+for i in range(0, len(male_urls)):
+    file_name = female_urls[i].split('/')[-1]
+    file_no = str(i)
+    file_path = os.path.join('women', file_name, file_no)
+    scrape(male_urls[i], file_path)
+    print("Saved at :", file_path)
