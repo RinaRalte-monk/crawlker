@@ -149,14 +149,14 @@ def get_image(url, driver, save_to)
 
 ### 2.1 crawler_main.py👍
 
-Imports scrape from the scraper module ( explained below )
+- Imports scrape from the scraper module ( explained below )
 ```
 import os
 from scraper import scrape
 ```
 <br>
 
-Male_urls, female_urls : a list that holds the numerous urls
+- Male_urls, female_urls : a list that holds the numerous urls
 ```
 male_urls = [
     lists of urls here
@@ -169,11 +169,11 @@ female_urls = [
 
 <br>
 
-Loops through the list
-Stores the the last part of the /url in file_name
-Creates file path men/file_name for the scrape()
-Call scrape()
-print() to know which ones are done downloading
+- Loops through the lists
+<br><space>Stores the the last part of the /url in file_name
+<br><space>Creates file path men/file_name for the scrape()
+<br><space>Call scrape()
+<br><space>print() to know which ones have finished downloading
 ```
 for i in range(0, len(male_urls)):
     file_name = male_urls[i].split('/')[-1]
