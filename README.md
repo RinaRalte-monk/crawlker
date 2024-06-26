@@ -6,8 +6,8 @@ A python script that scrape images
 
 - init.py to intialize the folder as a module
 scrape functions that takes two arguments:
-<br>url: targeted url you want to scrape
-<br>save_to : which folder you want to save the scraped images
+<br><space>url: targeted url you want to scrape
+<br><space>save_to : which folder you want to save the scraped images
 
 ```
 def scrape(url, save_to):
@@ -31,17 +31,18 @@ def scrape(url, save_to):
 
 <br>
 - creates a driver variable for the selenium webdriver
->use the driver to load the desired (url)
+use the driver to load the desired (url)
+
 ```
 driver = webdriver.Chrome()
 driver.get(url)
 ```
 
 
-
 <br>
 - href selectors selects elements by css selector every<a>
 then stores every <a> that has a 'href' attributes inside the href_urls
+
 ```
 href_selectors = driver.find_elements(By.CSS_SELECTOR, "a")
 href_urls = [href.get_attribute('href') for href in href_selectors if href.get_attribute('href') is not None and href.get_attribute('href').endswith('/buy')]
@@ -53,8 +54,9 @@ href_urls = [href.get_attribute('href') for href in href_selectors if href.get_a
 - counts upto 50 to download only 50 images
 for each elements inside the href_urls scrapes
 the images using the get_image() function
-close driver
+
 ```
+close driver
     count = 0
     for href in href_urls :
         if count == 50:
@@ -70,6 +72,36 @@ close driver
 
 ### 1.2 scraper Module - get_image.py
 
+- the bread and butter of the code
+<br> a method that will take three arguments :
+url : url of targeted page
+driver : selenium driver
+save_to : save image to desired foler
+and scrape desired url
+
+```
+def get_image(url, driver, save_to):
+    driver.get(url)
+
+    img_objs = driver.find_elements(By.CLASS_NAME, 'image-grid-image')
+    img_style = [image.get_attribute('style') for image in img_objs]
+    img_urls = [link.split('url("')[1][:-3] for link in img_style]
+    sleeps = [1,0.5,1.5,0.7]
+
+    save_to = save_to
+    if save_to is None:
+        save_to = 'gotImage'
+
+    save_path = os.path.join('Images', save_to)
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+    for i,link in enumerate(tqdm(img_urls)):
+        img_name = i.split['/'][-3]
+        save_img = os.path.join(save_path, f'{img_name}.jpeg')
+        urllib.request.urlretrieve(link, save_img)
+        time.sleep(np.random.choice(sleeps))
+```
 
 ### 2.1 crawler_main.py👍
 

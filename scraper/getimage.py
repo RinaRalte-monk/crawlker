@@ -1,12 +1,3 @@
-import time
-import os
-import urllib.request
-import uuid
-import numpy as np
-from tqdm import tqdm
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-
 def get_image(url, driver, save_to):
     driver.get(url)
 
