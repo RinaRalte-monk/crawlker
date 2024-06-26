@@ -24,6 +24,8 @@ def get_image(url, driver, save_to):
         os.makedirs(save_path)
 
     for i,link in enumerate(tqdm(img_urls)):
-        save_img = os.path.join(save_path, f'{uuid.uuid4()}.jpeg')
+        img_name = i.split['/'][-3]
+        save_img = os.path.join(save_path, f'{img_name}.jpeg')
         urllib.request.urlretrieve(link, save_img)
         time.sleep(np.random.choice(sleeps))
+
