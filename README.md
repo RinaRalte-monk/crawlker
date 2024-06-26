@@ -2,7 +2,7 @@
 
 A python script that scrape images
 
-### 1.1 scraper Module  - __init__.py
+### 1.1 scraper Module - __init__.py👍
 
 - init.py to intialize the folder as a module
 scrape functions that takes two arguments:
@@ -42,8 +42,8 @@ driver.get(url)
 
 <br>
 
-- href selectors selects elements by css selector every<a>
-then stores every <a> that has a 'href' attributes inside the href_urls
+- href selectors selects elements by css selector every 'a'
+<br><space>then stores every <a> that has a 'href' attributes inside the href_urls
 
 ```
 href_selectors = driver.find_elements(By.CSS_SELECTOR, "a")
@@ -74,7 +74,7 @@ close driver
 
 <br>
 
-### 1.2 scraper Module - get_image.py
+### 1.2 scraper Module - get_image.py👍
 
 - the bread and butter of the code
 <br> a method that will take three arguments :
@@ -109,8 +109,8 @@ def get_image(url, driver, save_to)
 <br>
 
 - use driver to find imgaes through class ->
-<br><space>filter it by attribute of 'style'
-<br><space>clean the 'style' list to get proper urls
+<br><space>filter it by attribute of 'style'->
+<br><space>clean the 'style' list to get proper urls ->
 
 ```
     img_objs = driver.find_elements(By.CLASS_NAME, 'image-grid-image')
@@ -119,7 +119,7 @@ def get_image(url, driver, save_to)
 ```
 
 - prepares the path for the downloaded images
-<br><space>if save_to is not have a default folder
+<br><space>if save_to is None have a default folder
 <br><space>if not None set the path under 'Images' folder
 
 ```
@@ -154,6 +154,8 @@ Imports scrape from the scraper module ( explained below )
 import os
 from scraper import scrape
 ```
+<br>
+
 Male_urls, female_urls : a list that holds the numerous urls
 ```
 male_urls = [
@@ -164,6 +166,9 @@ female_urls = [
     lists of urls here
 ]
 ```
+
+<br>
+
 Loops through the list
 Stores the the last part of the /url in file_name
 Creates file path men/file_name for the scrape()
