@@ -33,9 +33,9 @@ scrapper : a python module that scrapes
 Venv : a python virtual env
 
 
-### 2 Python Scripts👍
+### 2.1 crawler_main.py👍
 
-- crawler_main.py
+
 
 ```
 import os
