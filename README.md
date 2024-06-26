@@ -149,21 +149,35 @@ def get_image(url, driver, save_to)
 
 ### 2.1 crawler_main.py👍
 
-- Imports scrape from the scraper module ( explained below )
+- the main script
+<br><space>just used as a pilot for the scraper module
+
 ```
 import os
+from scraper import scrape
+
+urls = [
+    #url lists here
+]
+
+for i in range(0, len(urls)):
+    file_name = urls[i].split('/')[-1]
+    file_path = os.path.join('men', file_name)
+    scrape(urls[i], file_path)
+    print("Saved at :", file_path)
+```
+
+- Imports scrape from the scraper module ( explained below )
+```
 from scraper import scrape
 ```
 <br>
 
-- Male_urls, female_urls : a list that holds the numerous urls
-```
-male_urls = [
-    lists of urls here
-]
+- store urls here that you want to loop through
 
-female_urls = [
-    lists of urls here
+```
+urls = [
+    #lists of urls here
 ]
 ```
 
@@ -175,16 +189,9 @@ female_urls = [
 <br><space>Call scrape()
 <br><space>print() to know which ones have finished downloading
 ```
-for i in range(0, len(male_urls)):
-    file_name = male_urls[i].split('/')[-1]
+for i in range(0, len(urls)):
+    file_name = urls[i].split('/')[-1]
     file_path = os.path.join('men', file_name)
-    scrape(male_urls[i], file_path)
+    scrape(urls[i], file_path)
     print("Saved at :", file_path)
-
-for i in range(0, len(female_urls)):
-    file_name = female_urls[i].split('/')[-1]
-    file_no = str(i)
-    file_path = os.path.join('women', file_name, file_no)
-    scrape(male_urls[i], file_path)
-    print("Saved at:", file_path)
 ```
